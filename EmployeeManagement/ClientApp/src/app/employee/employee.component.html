@@ -71,14 +71,14 @@
           <div class="form-group">
             <label for="name">Last Name</label>
             <input type="text" formControlName="lastName" class="form-control" />
-            <div class="text-danger" *ngIf="employeeForm.controls['lastName'].hasError('required') && (employeeForm.controls['lastName'].dirty || employeeForm.controls['firstName'].touched)">Last Name is required</div>
+            <div class="text-danger" *ngIf="employeeForm.controls['lastName'].hasError('required') && (employeeForm.controls['lastName'].dirty || employeeForm.controls['salary'].touched)">Last Name is required</div>
           </div>
 
           <div class="form-group">
             <label for="name">Designation</label>
             <ul>
               <li *ngFor="let option of designationList">
-                <input type="radio" name="price" (click)="getValue(option)" formControlName="option"
+                <input type="radio" name="price" (click)="getDesignationValue(option)" formControlName="designationId"
                        value={{option.id}}>{{option.designationName}}
               </li>
             </ul>
@@ -88,19 +88,40 @@
 
           <div class="form-group">
             <label for="name">Department</label>
-            <div *ngFor="let item of departmentList; let i=index" class="col-md-2">
-              <label>
-                <input type="checkbox" [value]="item.id" (change)="onCheckChange($event)">
-                {{item.departmentName}}
-              </label>
-            </div>
+            <select class="custom-select" (change)="onCheckChange($event)" formControlName="departmentId">
+              <option value="" disabled>Choose your department</option>
+              <option *ngFor="let dept of departmentList" [ngValue]="dept.id">{{dept.departmentName}}</option>
+            </select>
             <!--<div class="text-danger" *ngIf="employeeForm.controls['firstName'].hasError('required') && (employeeForm.controls['value'].dirty || employeeForm.controls['firstName'].touched)">First Name is required</div>-->
           </div>
 
           <div class="form-group">
-            <label for="name">First Name</label>
-            <input type="text" formControlName="firstName" class="form-control" />
-            <div class="text-danger" *ngIf="employeeForm.controls['firstName'].hasError('required') && (employeeForm.controls['value'].dirty || employeeForm.controls['firstName'].touched)">First Name is required</div>
+            <label for="name">Have Knowledge of </label>
+            <div *ngFor="let item of employeeForm.controls.knowledgeItem.controls; let i=index;">
+              <input type="checkbox" [formControl]="item">
+              {{knowledgeList[i].name}}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="name">Salary</label>
+            <input type="text" formControlName="salary" class="form-control" />
+            <div class="text-danger" *ngIf="employeeForm.controls['salary'].hasError('required') && (employeeForm.controls['salary'].dirty || employeeForm.controls['salary'].touched)">Salary is required</div>
+          </div>
+          <div class="form-group">
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="joiningDate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <div class="text-danger" *ngIf="employeeForm.controls['joiningDate'].hasError('required') && (employeeForm.controls['joiningDate'].dirty || employeeForm.controls['joiningDate'].touched)">Joining Date is required</div>
+          </div>
+
+          <div class="form-group">
+            <label for="name">Reporting Person</label>
+            <select class="custom-select" formControlName="reportingPerson">
+              <option value="" disabled>Choose your department</option>
+              <option *ngFor="let emp of employeeList" [ngValue]="emp.id">{{emp.firstName}}</option>
+            </select>
+            <!--<div class="text-danger" *ngIf="employeeForm.controls['firstName'].hasError('required') && (employeeForm.controls['value'].dirty || employeeForm.controls['firstName'].touched)">First Name is required</div>-->
           </div>
 
           <button [disabled]="loading" class="btn btn-primary" (click)="onSubmit()">
@@ -112,7 +133,7 @@
           </button>
           <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
         </form>
-      </div>
+    </div>
     </div>
   </div>
 </div>

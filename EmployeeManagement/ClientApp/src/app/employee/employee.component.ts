@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { employeeModel } from '../shared/models/employee';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { HttpClient } from '@angular/common/http';
@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from '../service.service';
 import { Designation } from '../shared/models/designation';
 import { Department } from '../shared/models/department';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-employee-component',
@@ -29,6 +30,40 @@ export class EmployeeComponent implements OnInit {
   editItemData: employeeModel;
   public modalRef: BsModalRef;
 
+  selectedItems: [string];
+  knowledgeList: any = [
+    {
+      name: "MVC",
+      value: "MVC",
+      selected: true
+    },
+    {
+      name: "VB",
+      value: "VB",
+      selected: true
+    },
+    {
+      name: "SQL",
+      value: "SQL",
+      selected: true
+    },
+    {
+      name: "Jquery",
+      value: "Jquery"
+    },
+    {
+      name: "JavaScript",
+      value: "JavaScript"
+    },
+    {
+      name: "AngularJS",
+      value: "AngularJS"
+    },
+    {
+      name: "NodeJS ",
+      value: "NodeJS "
+    }
+  ];
 
   constructor(private ServiceService: ServiceService, private formBuilder: FormBuilder, private http: HttpClient, public toastr: ToastrService, public modalService: BsModalService) {
     this.buttonName = "Add";
@@ -42,11 +77,21 @@ export class EmployeeComponent implements OnInit {
 
   ngOnInit(): void {
     this.employeeForm = this.formBuilder.group({
+      knowledgeItem: this.createKnowlegeList(this.knowledgeList),
       value: ['', Validators.required],
     });
   }
 
   get f() { return this.employeeForm.controls; }
+
+  
+
+  createKnowlegeList(hobbiesInputs) {
+    const arr = hobbiesInputs.map(item => {
+      return new FormControl(item.selected || false);
+    });
+    return new FormArray(arr);
+  }
 
   sortings() {
 
@@ -117,7 +162,7 @@ export class EmployeeComponent implements OnInit {
         this.loading = false;
       })
   }
-  getValue(option) {
+  getDesignationValue(option) {
     this.selectedDesignation = option;
   }
 
@@ -146,6 +191,8 @@ export class EmployeeComponent implements OnInit {
     })
   }
 
+  
+
   edit(item: employeeModel) {
     debugger
     this.editItemData = item;
@@ -168,4 +215,15 @@ export class EmployeeComponent implements OnInit {
     
 
   }
+
+  postData(formData) {
+    return this.http.post('/api/Employee', formData);
+  }
+
+  putData(id, formData) {
+    return this.http.put('/api/Employee/' + id, formData);
+  }
+  deleteData(id) {
+    return this.http.delete('/api/Employee/' + id);
+  } 
 }
