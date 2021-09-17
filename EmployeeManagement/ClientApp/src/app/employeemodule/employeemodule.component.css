@@ -1,0 +1,294 @@
+
+@import "~/../src/app/styles/common/variables.scss";
+@import "~/../src/app/styles/common/extend.scss";
+
+
+
+
+.dashboard-main {
+  height: 100vh;
+  width: 100%;
+  padding-left: 30%;
+  background: url(../../../assets/images/background.jpg) no-repeat;
+  background-position: top left;
+  background-size: cover;
+  text-align: center;
+  margin-right: 0;
+}
+
+.loader {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.loader-icon {
+  border: 10px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 10px solid #007bff;
+  width: 50px;
+  height: 50px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+.button-logout {
+  position: absolute;
+  right: 60px;
+  top: 40px;
+
+  a {
+  @extend .button-black;
+  display: inline-block;
+  img
+
+{
+  margin: 0 10px 0 0;
+}
+
+}
+}
+
+body, html {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.hub-section {
+  /*height: 100vh;
+  display: table;
+  width: 100%;
+  padding: 50px 0;*/
+  .hub-main
+
+{
+  /*display: table-cell;
+   vertical-align: middle;*/
+  overflow-y: auto;
+  max-height: 100vh;
+  .logo
+
+{
+  margin: 0 0 50px 0;
+  h2
+
+{
+  font-size: 24px;
+  margin: 10px 0 0 0;
+}
+
+}
+}
+}
+
+.form {
+  max-width: 538px;
+  margin: auto;
+  .form-title
+
+{
+  font-size: 35px;
+  line-height: 42px;
+}
+
+.input-field {
+  margin: 0 0 40px 0;
+  width: 100%;
+  display: flex;
+  position: relative;
+  input
+
+{
+  width: 100%;
+  border-radius: 5px;
+  background: $color-black-transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  padding: 14px 20px;
+  font-size: 24px;
+  color: $placeholder-color;
+  &::-webkit-input-placeholder
+
+{
+  color: $placeholder-color;
+}
+
+&::-moz-placeholder {
+  color: $placeholder-color;
+}
+
+&:-ms-input-placeholder {
+  color: $placeholder-color;
+}
+
+&:-moz-placeholder {
+  color: $placeholder-color;
+}
+
+}
+
+.password-icon {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+}
+
+.submit-button {
+  @extend .button-blue;
+  margin: 0 20px 0 0;
+}
+
+.forgot-password {
+  @extend .button-black;
+}
+
+}
+
+.hub-form {
+  .upload-api
+
+{
+  @extend .button-black;
+  margin: 0 20px 0 0;
+  display: inline-block;
+  position: relative;
+  img
+
+{
+  margin: 0 10px 0 0;
+}
+
+input {
+  position: absolute;
+  opacity: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+}
+
+.add-hub-version {
+  @extend .button-blue;
+}
+
+}
+
+.error-message {
+  width: 100%;
+  margin-top: .25rem;
+  font-size: 80%;
+  color: #dc3545;
+}
+
+// @media (max-width: 1440px) {
+  // .dashboard-main
+
+{
+  // padding-left: 400px;
+  //
+}
+
+//
+}
+
+@media (max-width: 1024px) {
+  .form {
+    .form-title
+
+{
+  font-size: 28px;
+  line-height: 34px;
+}
+
+.input-field {
+  margin: 0 0 30px 0;
+  input
+
+{
+  padding: 10px 15px;
+  font-size: 18px;
+}
+
+}
+}
+
+.dashboard-main {
+  padding-left: 0;
+}
+
+}
+
+@media (max-width: 767px) {
+  .form {
+    max-width: 90%;
+    .form-title
+
+{
+  font-size: 24px;
+  line-height: 30px;
+}
+
+.input-field {
+  margin: 0 0 20px 0;
+  input
+
+{
+  padding: 8px 15px;
+  font-size: 16px;
+}
+
+.password-icon {
+  right: 15px;
+  img
+
+{
+  max-width: 20px;
+}
+
+}
+}
+}
+
+.hub-form {
+  .upload-api
+
+{
+  display: inline-block;
+  margin: auto 15px 15px;
+}
+
+.add-hub-version {
+  display: inline-block;
+  margin: auto;
+}
+
+}
+
+.button-logout {
+  right: 20px;
+  top: 20px;
+}
+
+}
+
+@media only screen and (max-device-width: 812px) and (orientation: landscape) {
+  .dashboard-main {
+    height: auto;
+    min-height: 100%;
+  }
+}

@@ -7,7 +7,6 @@ import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from '../service.service';
 import { Designation } from '../shared/models/designation';
 import { Department } from '../shared/models/department';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-employee-component',

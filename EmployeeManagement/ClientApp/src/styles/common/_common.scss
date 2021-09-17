@@ -1,0 +1,66 @@
+// common css start
+body {
+    margin: 0;
+    padding: 0;
+    color: $color-white;
+    font-family: 'Roboto';
+    font-weight: normal;
+}
+
+*,
+::after,
+::before {
+    box-sizing: border-box
+}
+
+img {
+    vertical-align: middle;
+    border-style: none
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0 0 40px 0;
+    font-weight: normal;
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+}
+
+ul,
+li,
+ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+@media (max-width: 1024px) {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin: 0 0 30px 0;
+        font-weight: normal;
+    }
+}
+
+@media (max-width: 767px) {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin: 0 0 20px 0;
+        font-weight: normal;
+    }
+}

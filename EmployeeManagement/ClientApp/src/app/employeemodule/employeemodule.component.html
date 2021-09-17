@@ -1,0 +1,86 @@
+<div class="dashboard-main">
+
+  <section id="hub-section" class="hub-section">
+    <div class="hub-main">
+      <div class="logo">
+        <h2>Add App Version</h2>
+      </div>
+      <div class="hub-form form">
+
+        <div class="input-field">
+          <input [(ngModel)]="employeeModel.firstName" type="text" placeholder="First Name" name="fname" (blur)="onblurFName()" required>
+        </div>
+        <div class="error-message">
+          {{firstNameErrorMSg}}
+        </div>
+
+        <div class="input-field">
+          <input [(ngModel)]="employeeModel.lastName" type="text" placeholder="Last Name" name="lname" (blur)="onblurFName()" required>
+        </div>
+        <div class="error-message">
+          {{firstNameErrorMSg}}
+        </div>
+
+        <div class="input-field">
+          <label for="name">Designation</label>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let item of designationList">
+              <input type="radio" [(ngModel)]="employeeModel.designationId" name="list_name" value="{{item.id}}"  />
+              {{item.designationName}}
+            </li>
+          </ul>
+        </div>
+        <div class="error-message">
+          {{designationErrorMSg}}
+        </div>
+
+        <div class="input-field">
+          <label class="mb-1">Department</label>
+          <select class="d-block" name="appName" [(ngModel)]="appVersionModel.AppName" (ngModelChange)="selectedApp($event)"
+                  (blur)="onblurAppName()" required>
+            <option [ngValue]="undefined" disabled selected>Select App</option>
+            <option *ngFor="let app of  appDetailsModel" [ngValue]="app">{{app.appName}}</option>
+          </select>
+        </div>
+        <div class="error-message">
+          {{appNameErrorMSg}}
+        </div>
+        <div class="input-field">
+          <input [(ngModel)]="appVersionModel.VersionCode" type="text" placeholder="App Version Code" name="vcode" (blur)="onblurCode()" required>
+        </div>
+        <div class="error-message">
+          {{versionCodeErrorMSg}}
+        </div>
+        <div class="input-field">
+          <input [(ngModel)]="appVersionModel.VersionName" type="text" placeholder="App Version Name" name="vname" (blur)="onblurName()" required>
+        </div>
+        <div class="error-message">
+          {{versionNameErrorMSg}}
+        </div>
+        <div class="input-field">
+          <input [(ngModel)]="appVersionModel.Description" type="text" placeholder="App Description" name="vdesc" (blur)="onblurdesc()" required>
+        </div>
+        <div class="error-message">
+          {{descriptionErrorMSg}}
+        </div>
+        <div class="input-field">
+          <span class="upload-api">
+            <img src="../../../assets/images/upload-apk.svg" alt="upload-apk" title="upload-apk">Upload APK
+            <input type="file" name="filename" (change)="appVersionValidation($event)">
+          </span>
+          <div> {{appVersionFileName}}</div>
+        </div>
+        <div class="input-field">
+          <button *ngIf="isValidData" class="add-hub-version" (click)="addAppVersion()">Add App</button>
+
+          <div class="error-message">
+            {{appVersionErrorMessage}}
+          </div>
+        </div>
+      </div>
+      <div class="loader" *ngIf="loader">
+        <div class="loader-icon"></div>
+      </div>
+    </div>
+  </section>
+</div>

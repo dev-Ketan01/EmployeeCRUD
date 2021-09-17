@@ -1,0 +1,51 @@
+.button {
+    color: $color-white;
+    border-radius: 2px;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding: 18px 30px;
+    color: $color-white;
+    font-size: 16px;
+    min-width: 160px;
+    cursor: pointer;
+    @extend .transiton-03s;
+}
+
+.button-blue {
+    @extend .button;
+    background-color: $color-blue;
+    &:hover {
+        background-color: $color-gray;
+    }
+}
+
+.button-black {
+    @extend .button;
+    background-color: $color-black;
+    &:hover {
+        background-color: $color-gray;
+    }
+}
+
+.transiton-03s {
+    transition: 0.3s ease-in;
+    -o-transition: 0.3s ease-in;
+    -ms-transition: 0.3s ease-in;
+    -moz-transition: 0.3s ease-in;
+    -webkit-transition: 0.3s ease-in;
+}
+
+@media (max-width: 1024px) {
+    .button {
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    .button {
+        padding: 8px 20px;
+        min-width: auto;
+        font-size: 14px;
+    }
+}
