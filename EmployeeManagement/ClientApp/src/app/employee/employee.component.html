@@ -1,0 +1,118 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="card card-user">
+      <div class="card-header">
+        <h4 class="card-title"> Employee</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+            <th [appSort]="dataList" data-order="desc" data-name="employeeId" scope="col">
+              FullName
+            </th>
+            <th>
+              Designation
+            </th>
+            <th>
+              Department
+            </th>
+            <th>
+              Joining Date
+            </th>
+            <th>
+              Reporting Person
+            </th>
+            <th>
+              Actions
+            </th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of employeeList ">
+                <td>{{item.firstName}} &nbsp; &nbsp;  {{item.lastName}}</td>
+                <td>{{item.designation}} </td>
+                <td>{{item.department}} </td>
+                <td>{{item.joiningDate | date}} </td>
+                <td>{{item.reportingPerson}} </td>
+                <td style="display: inline-flex">
+                  <div style="margin-right:8px">
+                    <button class="btn btn-sm btn-outline-success btn-round btn-icon" (click)="edit(item)" title="Edit"><h3><i class="fa fa-pencil-square-o"></i></h3></button>
+                  </div>
+                  <!--<div style="margin-right: 8px">
+                    <button class="btn btn-sm btn-outline-success btn-round btn-icon" (click)="delete(item.id)" title="Delete"><h3><i class="fa fa-trash"></i></h3></button>
+                  </div>-->
+                </td>
+              </tr>
+            </tbody>
+
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-md-6">
+    <div class="card card-user">
+      <div class="card-header">
+
+        <h5 class="card-title">Add/Edit Categories</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="employeeForm">
+          <div class="form-group">
+            <label for="name">First Name</label>
+            <input type="text" formControlName="firstName" class="form-control" />
+            <div class="text-danger" *ngIf="employeeForm.controls['firstName'].hasError('required') && (employeeForm.controls['firstName'].dirty || employeeForm.controls['firstName'].touched)">First Name is required</div>
+          </div>
+
+          <div class="form-group">
+            <label for="name">Last Name</label>
+            <input type="text" formControlName="lastName" class="form-control" />
+            <div class="text-danger" *ngIf="employeeForm.controls['lastName'].hasError('required') && (employeeForm.controls['lastName'].dirty || employeeForm.controls['firstName'].touched)">Last Name is required</div>
+          </div>
+
+          <div class="form-group">
+            <label for="name">Designation</label>
+            <ul>
+              <li *ngFor="let option of designationList">
+                <input type="radio" name="price" (click)="getValue(option)" formControlName="option"
+                       value={{option.id}}>{{option.designationName}}
+              </li>
+            </ul>
+            <!--<div class="text-danger" *ngIf="employeeForm.controls['firstName'].hasError('required') && (employeeForm.controls['value'].dirty || employeeForm.controls['firstName'].touched)">First Name is required</div>-->
+          </div>
+
+
+          <div class="form-group">
+            <label for="name">Department</label>
+            <div *ngFor="let item of departmentList; let i=index" class="col-md-2">
+              <label>
+                <input type="checkbox" [value]="item.id" (change)="onCheckChange($event)">
+                {{item.departmentName}}
+              </label>
+            </div>
+            <!--<div class="text-danger" *ngIf="employeeForm.controls['firstName'].hasError('required') && (employeeForm.controls['value'].dirty || employeeForm.controls['firstName'].touched)">First Name is required</div>-->
+          </div>
+
+          <div class="form-group">
+            <label for="name">First Name</label>
+            <input type="text" formControlName="firstName" class="form-control" />
+            <div class="text-danger" *ngIf="employeeForm.controls['firstName'].hasError('required') && (employeeForm.controls['value'].dirty || employeeForm.controls['firstName'].touched)">First Name is required</div>
+          </div>
+
+          <button [disabled]="loading" class="btn btn-primary" (click)="onSubmit()">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            {{buttonName}}
+          </button>
+          <button class="btn btn-primary" (click)="cancel()">
+            Cancel
+          </button>
+          <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
